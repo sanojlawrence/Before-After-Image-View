@@ -95,8 +95,7 @@ implementation 'com.github.sanojlawrence:BeforeAfterImageView:1.0.0'
 ## Java Usage
 
 ```java
-BeforeAfterImageView beforeAfterView =
-        findViewById(R.id.beforeAfterView);
+BeforeAfterImageView beforeAfterView = findViewById(R.id.beforeAfterView);
 
 // Set original image
 beforeAfterView.setOriginalBitmap(originalBitmap);
