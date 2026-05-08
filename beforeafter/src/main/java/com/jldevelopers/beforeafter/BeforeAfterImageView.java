@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
@@ -252,6 +253,22 @@ public class BeforeAfterImageView extends FrameLayout {
      */
     public void setResultDrawable(Drawable drawable) {
         resultImage.setImageDrawable(drawable);
+    }
+
+    public Drawable getResultDrawable() {
+        return resultImage.getDrawable();
+    }
+
+    @Nullable
+    public Bitmap getResultBitmap() {
+
+        Drawable drawable = resultImage.getDrawable();
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        return null;
     }
 
     /* --------------------------------------------------------------------
