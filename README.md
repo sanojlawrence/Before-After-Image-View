@@ -2,6 +2,8 @@
 
 A modern AI-style before/after image comparison slider for Android.
 
+![BeforeAfterImageView Preview](preview.png)
+
 `BeforeAfterImageView` provides a smooth draggable image comparison experience similar to apps like:
 - Remini
 - Pixelcut
