@@ -48,10 +48,33 @@ Perfect for:
 
 # 📦 Installation
 
-## 1. Add Module Dependency
+## Step 1 — Add JitPack Repository
+
+Add this inside your root `settings.gradle`:
 
 ```gradle
-implementation project(":beforeafter")
+dependencyResolutionManagement {
+
+    repositoriesMode.set(
+            RepositoriesMode.FAIL_ON_PROJECT_REPOS
+    )
+
+    repositories {
+
+        google()
+        mavenCentral()
+
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+---
+
+## Step 2 — Add Dependency
+
+```gradle
+implementation 'com.github.sanojlawrence:BeforeAfterImageView:1.0.0'
 ```
 
 ---
