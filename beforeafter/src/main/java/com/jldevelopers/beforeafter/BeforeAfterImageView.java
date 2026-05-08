@@ -25,22 +25,17 @@ import androidx.annotation.Nullable;
  * ------------------------------------------------------------------------
  * BeforeAfterImageView
  * ------------------------------------------------------------------------
- *
  * A reusable custom compare slider view used for:
- *
  * 1. Showing original image
  * 2. Showing AI/generated image
  * 3. Dragging left/right to compare
  * 4. Playing intro animation
  * 5. Playing automatic preview animation
- *
  * This view keeps ALL compare logic outside the Activity
  * making ConvertActivity much cleaner and easier to maintain.
- *
  * ------------------------------------------------------------------------
  * FEATURES
  * ------------------------------------------------------------------------
- *
  * ✅ Drag compare
  * ✅ Animated reveal
  * ✅ Professional slider handle
@@ -50,27 +45,21 @@ import androidx.annotation.Nullable;
  * ✅ Touch feedback animation
  * ✅ Haptic feedback
  * ✅ Reset support
- *
  * ------------------------------------------------------------------------
  * USAGE
  * ------------------------------------------------------------------------
- *
  * XML:
- *
  * <com.yourpackage.BeforeAfterImageView
  *      android:id="@+id/beforeAfterView"
  *      android:layout_width="match_parent"
  *      android:layout_height="300dp"/>
- *
- *
  * Activity:
- *
  * beforeAfterView.setOriginalBitmap(bitmap);
  * beforeAfterView.setResultDrawable(drawable);
- *
+
  * beforeAfterView.playRevealAnimation();
  * beforeAfterView.playCompareAnimation();
- *
+
  * ------------------------------------------------------------------------
  */
 
@@ -167,6 +156,9 @@ public class BeforeAfterImageView extends FrameLayout {
                  * -------------------------------------------------------- */
                 case MotionEvent.ACTION_DOWN:
 
+                    // Prevent parent scroll interception
+                    getParent().requestDisallowInterceptTouchEvent(true);
+
                     // Small vibration feedback
                     performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
@@ -179,6 +171,9 @@ public class BeforeAfterImageView extends FrameLayout {
                  * USER DRAGGING
                  * -------------------------------------------------------- */
                 case MotionEvent.ACTION_MOVE:
+                    // Keep blocking parent scrolling
+                    getParent().requestDisallowInterceptTouchEvent(true);
+
                     float x = event.getX();
 
                     // Prevent overflow left
@@ -197,6 +192,8 @@ public class BeforeAfterImageView extends FrameLayout {
                  * -------------------------------------------------------- */
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
+                    // Allow scrolling again
+                    getParent().requestDisallowInterceptTouchEvent(false);
 
                     // Return handle to normal size
                     animateHandleReleased();
@@ -214,14 +211,10 @@ public class BeforeAfterImageView extends FrameLayout {
 
     /**
      * Updates compare reveal
-     *
      * Example:
-     *
      * x = 50%
-     *
      * LEFT SIDE:
      * AI image visible
-     *
      * RIGHT SIDE:
      * Original image visible
      */
@@ -314,7 +307,6 @@ public class BeforeAfterImageView extends FrameLayout {
     /**
      * Automatically moves compare slider
      * left → right → center
-     *
      * Gives user preview of compare feature
      */
     public void playCompareAnimation() {
