@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BeforeAfterImageView">
+
+        <!-- Divider color -->
+        <attr name="dividerColor" format="color"/>
+
+        <!-- Handle size -->
+        <attr name="handleSize" format="dimension"/>
+
+        <!-- Divider width -->
+        <attr name="dividerWidth" format="dimension"/>
+
+        <!-- Auto animation -->
+        <attr name="autoAnimate" format="boolean"/>
+
+    </declare-styleable>
+
+</resources>
